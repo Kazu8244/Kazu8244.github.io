@@ -14,10 +14,15 @@ a {
   color: #58a6ff;
   margin: 0 15px;
   text-decoration: none;
+  font-size: 1.2rem;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+nav a.active {
+  color: red;
 }
 
 section {
