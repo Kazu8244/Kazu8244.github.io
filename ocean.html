@@ -25,43 +25,68 @@
   <section style="background:#001133;color:#00ccff;text-align:center;font-family:sans-serif;">
     <h1>BlueCave Remote Lab</h1>
 
+    <label for="username">Username:</label>
+    <input type="text" id="username" value="Kazu8244"><br><br>
+
+    <label for="key">AIO Key:</label>
+    <input type="password" id="key" value=""><br><br>
+
+    <label for="feed">Feed:</label>
+    <input type="text" id="feed" value="led"><br><br>
+
     <button onclick="ledOn()">LED ON</button>
     <button onclick="ledOff()">LED OFF</button>
 
     <script>
 
-    const username = "Kazu8244"
-    const key = "aio_dmhl87z0W9tANFFuF3q4oqfyqMfa"
-    const feed = "led"
-
     function ledOn(){
+      const username = document.getElementById('username').value;
+      const key = document.getElementById('key').value;
+      const feed = document.getElementById('feed').value;
 
-    fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
-    method:"POST",
-    headers:{
-    "X-AIO-Key":key,
-    "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-    value:"ON"
-    })
-    })
-
+      fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
+      method:"POST",
+      headers:{
+      "X-AIO-Key":key,
+      "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+      value:"ON"
+      })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("LED ON");
+        } else {
+          alert("Error: " + response.status);
+        }
+      })
+      .catch(error => alert("Error: " + error));
     }
 
     function ledOff(){
+      const username = document.getElementById('username').value;
+      const key = document.getElementById('key').value;
+      const feed = document.getElementById('feed').value;
 
-    fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
-    method:"POST",
-    headers:{
-    "X-AIO-Key":key,
-    "Content-Type":"application/json"
-    },
-    body:JSON.stringify({
-    value:"OFF"
-    })
-    })
-
+      fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
+      method:"POST",
+      headers:{
+      "X-AIO-Key":key,
+      "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+      value:"OFF"
+      })
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("LED OFF");
+        } else {
+          alert("Error: " + response.status);
+        }
+      })
+      .catch(error => alert("Error: " + error));
     }
 
     </script>
