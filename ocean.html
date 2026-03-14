@@ -22,5 +22,51 @@
     <img src="images/ocean.jpg" alt="オーシャン" class="responsive-img">
   </section>
 
+
+<body style="background:#001133;color:#00ccff;text-align:center;font-family:sans-serif;">
+
+<h1>BlueCave Remote Lab</h1>
+
+<button onclick="ledOn()">LED ON</button>
+<button onclick="ledOff()">LED OFF</button>
+
+<script>
+
+const username = "Kazu8244"
+const key = "aio_dmhl87z0W9tANFFuF3q4oqfyqMfa"
+const feed = "led"
+
+function ledOn(){
+
+fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
+method:"POST",
+headers:{
+"X-AIO-Key":key,
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+value:"ON"
+})
+})
+
+}
+
+function ledOff(){
+
+fetch("https://io.adafruit.com/api/v2/"+username+"/feeds/"+feed+"/data",{
+method:"POST",
+headers:{
+"X-AIO-Key":key,
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+value:"OFF"
+})
+})
+
+}
+
+</script>
+
 </body>
 </html>
